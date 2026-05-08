@@ -12,12 +12,7 @@ const CountryDetails = () => {
   const [borderCountriesFull, setBorderCountriesFull] = useState([])
 
   useEffect(() => {
-    if (name && name !== 'undefined') {
-      fetchCountryDetails()
-    } else {
-      setError('Invalid country name')
-      setLoading(false)
-    }
+    fetchCountryDetails()
   }, [name])
 
   const fetchCountryDetails = async () => {
@@ -25,18 +20,8 @@ const CountryDetails = () => {
     setError(null)
     
     try {
-      // Try with exact name first
-      let response = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(name)}?fullText=true`)
-      
-      // If not found, try without fullText
-      if (!response.ok) {
-        response = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(name)}`)
-      }
-      
-      if (!response.ok) {
-        throw new Error('Country not found')
-      }
-      
+      const response = await fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
+      if (!response.ok) throw new Error('Country not found')
       const data = await response.json()
       const countryData = data[0]
       setCountry(countryData)
@@ -45,24 +30,17 @@ const CountryDetails = () => {
       if (countryData.borders && countryData.borders.length > 0) {
         const borderNames = await Promise.all(
           countryData.borders.map(async (borderCode) => {
-            try {
-              const borderResponse = await fetch(`https://restcountries.com/v3.1/alpha/${borderCode}`)
-              if (borderResponse.ok) {
-                const borderData = await borderResponse.json()
-                return borderData[0]?.name?.common || borderCode
-              }
-              return borderCode
-            } catch (err) {
-              return borderCode
+            const borderResponse = await fetch(`https://restcountries.com/v3.1/alpha/${borderCode}`)
+            if (borderResponse.ok) {
+              const borderData = await borderResponse.json()
+              return borderData[0]?.name?.common || borderCode
             }
+            return borderCode
           })
         )
         setBorderCountriesFull(borderNames)
-      } else {
-        setBorderCountriesFull([])
       }
     } catch (err) {
-      console.error('Fetch error:', err)
       setError(err.message)
     } finally {
       setLoading(false)
@@ -89,7 +67,7 @@ const CountryDetails = () => {
           <div className="error-card">
             <h1>❌</h1>
             <h2>Country Not Found</h2>
-            <p>We couldn't find information for "{name || 'this country'}"</p>
+            <p>We couldn't find information for "{decodeURIComponent(name)}"</p>
             <button onClick={() => navigate('/')} className="retry-btn">
               ← Back to Home
             </button>
@@ -114,24 +92,17 @@ const CountryDetails = () => {
                 src={country.flags?.svg || country.flags?.png} 
                 alt={`${country.name.common} flag`}
                 className="details-flag"
-                onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/300x200?text=No+Flag'
-                }}
               />
               <div className="flag-coat">
                 {country.coatOfArms?.svg && (
-                  <img src={country.coatOfArms.svg} alt="Coat of Arms" className="coat-arms" 
-                    onError={(e) => {
-                      e.target.style.display = 'none'
-                    }}
-                  />
+                  <img src={country.coatOfArms.svg} alt="Coat of Arms" className="coat-arms" />
                 )}
               </div>
             </div>
             
             <div className="details-info-section">
-              <h1 className="details-name">{country.name?.common || 'N/A'}</h1>
-              {country.name?.official && country.name.official !== country.name.common && (
+              <h1 className="details-name">{country.name.common}</h1>
+              {country.name.official !== country.name.common && (
                 <p className="official-name">Official: {country.name.official}</p>
               )}
               
@@ -225,7 +196,7 @@ const CountryDetails = () => {
                       <span 
                         key={index} 
                         className="border-tag"
-                        onClick={() => navigate(`/country/${encodeURIComponent(border)}`)}
+                        onClick={() => navigate(`/country/${border}`)}
                         style={{ cursor: 'pointer' }}
                       >
                         {border}

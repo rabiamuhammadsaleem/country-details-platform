@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/country-details-platform/',  // ✅ Repository name ke saath
-})
+  base: '/',  
+}) 
