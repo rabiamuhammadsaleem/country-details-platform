@@ -1,16 +1,56 @@
-# React + Vite
+# 🌍 Country Details Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive, and dynamic web application built with **React 18** and **Vite**. This platform allows users to explore comprehensive data about countries worldwide, using the **REST Countries API**.
 
-Currently, two official plugins are available:
+🚀 **Live Demo:** [View Live Site](https://country-details-platform-bofz.vercel.app/)  
+💻 **GitHub Repository:** [View Source Code](https://github.com/rabiamuhammadsaleem/country-details-platform)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🌐 **Browse All Countries:** View all countries in a beautiful, responsive grid layout.
+- 🔍 **Search Functionality:** Instantly search for any country by its name.
+- 📄 **Smart Pagination:** Navigate through countries efficiently (12 countries per page).
+- 📊 **Detailed Insights:** Capitals, population, languages, currencies, and more.
+- 🗺️ **Google Maps Integration:** Direct links to view country locations on Google Maps.
+- 📱 **Fully Responsive:** Optimized for mobile, tablet, and desktop devices.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **Frontend:** React 18 (Functional Components & Hooks)
+- **Routing:** React Router DOM v6
+- **Styling:** Custom CSS3 with Keyframe Animations
+- **Build Tool:** Vite
+- **Hosting:** Vercel
+
+---
+
+## 🚀 Installation & Local Setup
+
+To run this project on your local machine:
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/rabiamuhammadsaleem/country-details-platform.git](https://github.com/rabiamuhammadsaleem/country-details-platform.git)
+2. **Install dependencies:**
+   npm install
+3. **Start the development server:**
+   npm run dev
+
+---
+
+## 👩‍💻 Author
+
+**Rabia Saleem** *Frontend Web Developer | Freelancer | React Specialist*
+
+- **LinkedIn:** [rabia-saleem2307](https://www.linkedin.com/in/rabia-saleem2307/)
+- **GitHub:** [rabiamuhammadsaleem](https://github.com/rabiamuhammadsaleem/)
+- **Email:** rabiasaleem2307@gmail.com
+
+---
+
+### Acknowledgments
+Special thanks to **SMIT (Saylani Mass IT Training)** for the continuous support and mentorship.   
